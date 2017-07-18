@@ -15,6 +15,8 @@ namespace Books
         /// storage of book
         /// </summary>
         private BookListService storage;
+        static int count;
+        private int id;
         /// <summary>
         /// Properties
         /// </summary>
@@ -28,6 +30,7 @@ namespace Books
         static Book()
         {
             BookListService storage = new BookListService();
+            count++;
         } 
         /// <summary>
         /// C-OR
@@ -43,6 +46,7 @@ namespace Books
             Authors = authors;
             YearEdition = yearEdition;
             NumberOfPage = numberOfPage;
+            id = count;
         }
 
         /// <summary>
