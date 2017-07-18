@@ -14,7 +14,6 @@ namespace BookListService_s
         /// storage 
         /// </summary>
         private string file = "C:/Users/User/Desktop/GitHub/NET.S.2017.Kuksov.09/Book/BookListStorage.txt";
-        private string timefile = "C:/Users/User/Desktop/GitHub/NET.S.2017.Kuksov.09/Book/TimeStore.txt";
         /// <summary>
         /// Add Book
         /// </summary>
@@ -22,7 +21,7 @@ namespace BookListService_s
         public void AddBook(Book book)
         {
             if (book == null) throw new ArgumentNullException();
-            BinaryWriter writer = new BinaryWriter(File.Open(timefile, FileMode.OpenOrCreate));
+            BinaryWriter writer = new BinaryWriter(File.Open(file, FileMode.OpenOrCreate));
             writer.Write(book.ToString("G"));
             writer.Close();
         }
@@ -33,12 +32,17 @@ namespace BookListService_s
         public void RemoveBook(Book book)
         {
             if (book == null) throw new ArgumentNullException();
-            BinaryReader reader = new BinaryReader(File.Open(timefile, FileMode.OpenOrCreate));
-            String str = reader.Read().ToString();
+            String str = String.Empty;
+            StringBuilder str1 = new StringBuilder();
+            BinaryReader reader = new BinaryReader(File.Open(file, FileMode.OpenOrCreate));
+            while (reader.PeekChar() > -1)
+            {
+                str = str1.Append(reader.Read().ToString()).ToString();
+            }
             if (str.Contains(book.ToString("G")) == false) throw new Exception("There are no this book");
             else str.Replace(book.ToString("G"), "");
             reader.Close();
-            BinaryWriter writer = new BinaryWriter(File.Open(timefile, FileMode.OpenOrCreate));
+            BinaryWriter writer = new BinaryWriter(File.Open(file, FileMode.OpenOrCreate));
             writer.Write(str);
             writer.Close();
         }

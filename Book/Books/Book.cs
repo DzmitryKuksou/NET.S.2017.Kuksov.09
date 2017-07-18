@@ -68,7 +68,7 @@ namespace Books
         /// <returns></returns>
         public override int GetHashCode()
         {
-            return base.GetHashCode();
+            return id;
         }
         /// <summary>
         /// converting in format string
