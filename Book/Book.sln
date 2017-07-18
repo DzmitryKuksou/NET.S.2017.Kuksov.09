@@ -8,7 +8,6 @@ EndProject
 Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "BookListStorage", "BookListStorage", "{21564200-E2CA-4AA8-9163-02E46AC18E4A}"
 	ProjectSection(SolutionItems) = preProject
 		BookListStorage.txt = BookListStorage.txt
-		TimeStore.txt = TimeStore.txt
 	EndProjectSection
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "main", "main\main.csproj", "{3FB4FA57-9305-4825-949A-07A61816EBA0}"

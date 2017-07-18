@@ -18,9 +18,16 @@ namespace BookListService_s
         /// Add Book
         /// </summary>
         /// <param name="book">book</param>
+        private Book[] books = new Book[10];
+        private static int count;
+        public BookListService(Book book)
+        {
+            books[count++] = book;
+        }
         public void AddBook(Book book)
         {
             if (book == null) throw new ArgumentNullException();
+            if (find(book) == false) throw new Exception("There are no this book");
             BinaryWriter writer = new BinaryWriter(File.Open(file, FileMode.OpenOrCreate));
             writer.Write(book.ToString("G"));
             writer.Close();
@@ -32,16 +39,7 @@ namespace BookListService_s
         public void RemoveBook(Book book)
         {
             if (book == null) throw new ArgumentNullException();
-            String str = String.Empty;
-            StringBuilder str1 = new StringBuilder();
-            BinaryReader reader = new BinaryReader(File.Open(file, FileMode.OpenOrCreate));
-            while (reader.PeekChar() > -1)
-            {
-                str = str1.Append(reader.Read().ToString()).ToString();
-            }
-            if (str.Contains(book.ToString("G")) == false) throw new Exception("There are no this book");
-            else str.Replace(book.ToString("G"), "");
-            reader.Close();
+            if(find(book) == false) throw new Exception("There are no this book");
             BinaryWriter writer = new BinaryWriter(File.Open(file, FileMode.OpenOrCreate));
             writer.Write(str);
             writer.Close();
@@ -53,6 +51,14 @@ namespace BookListService_s
         public void SortBooksByTag(string str)
         {
             //to do
+        }
+        private bool find(Book book)
+        {
+            for (int i = 0; i < books.Length; i++)
+            {
+                if (book.Equals(books[i]) == true) return true;
+            }
+            return false;
         }
     }
 }

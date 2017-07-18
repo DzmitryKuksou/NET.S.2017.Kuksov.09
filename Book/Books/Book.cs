@@ -23,13 +23,12 @@ namespace Books
         public string Name { get; private set; }
         public string Authors { get; private set; }
         public string YearEdition { get; private set; }
-        public string NumberOfPage { get; private set; }
+        public int NumberOfPage { get; private set; }
         /// <summary>
         /// c-or
         /// </summary>
         static Book()
         {
-            BookListService storage = new BookListService();
             count++;
         } 
         /// <summary>
@@ -39,7 +38,7 @@ namespace Books
         /// <param name="authors">authors of book</param>
         /// <param name="yearEdition"> year edition</param>
         /// <param name="numberOfPage">number of page</param>
-        public Book(string name, string authors,  string yearEdition, string numberOfPage)
+        public Book(string name, string authors,  string yearEdition, int numberOfPage)
         {
             if (name == null || authors == null || yearEdition == null || numberOfPage == null) throw new ArgumentNullException();
             Name = name;
@@ -47,6 +46,7 @@ namespace Books
             YearEdition = yearEdition;
             NumberOfPage = numberOfPage;
             id = count;
+            BookListService storage = new BookListService(this.Clone());
         }
 
         /// <summary>
