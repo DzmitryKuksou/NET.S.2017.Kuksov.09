@@ -25,6 +25,7 @@ namespace BookListService_s
         /// <param name="book">book</param>
         public BookListService(Book book)
         {
+            if(count >= books.Length)
             books[count++] = book;
         }
         /// <summary>
@@ -62,6 +63,11 @@ namespace BookListService_s
         {
             //to do
         }
+        /// <summary>
+        /// finding book in array
+        /// </summary>
+        /// <param name="book">book</param>
+        /// <returns>true or false</returns>
         private bool find(Book book)
         {
             for (int i = 0; i < books.Length; i++)
@@ -70,9 +76,14 @@ namespace BookListService_s
             }
             return false;
         }
+        /// <summary>
+        /// increment size of book array
+        /// </summary>
         private void Resize()
         {
-            //to do
+            Book[] newBooks = new Book[books.Length + 10];
+            Array.Copy(newBooks, books, books.Length);
+            books = newBooks;
         }
     }
 }
