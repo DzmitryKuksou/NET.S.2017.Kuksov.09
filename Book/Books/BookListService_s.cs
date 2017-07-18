@@ -49,12 +49,13 @@ namespace BookListService_s
             if (book == null) throw new ArgumentNullException();
             if(find(book) == false) throw new Exception("There are no this book");
             BinaryReader reader = new BinaryReader(File.Open(file, FileMode.OpenOrCreate));
-            string[] str1 = new string[books.Length - 1];
+            string[] str1 = new string[books.Length];
             while (reader.PeekChar() > -1)
             {
                 int i = 0;
-                if(str1[i] != book.ToString())
+                if (str1[i] != book.ToString())
                     str1[i] = book.ToString();
+                else str1[i] = String.Empty;
                 i++;
             }
             reader.Close();
