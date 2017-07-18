@@ -40,9 +40,12 @@ namespace BookListService_s
         {
             if (book == null) throw new ArgumentNullException();
             if(find(book) == false) throw new Exception("There are no this book");
-            BinaryWriter writer = new BinaryWriter(File.Open(file, FileMode.OpenOrCreate));
-            writer.Write(str);
-            writer.Close();
+            BinaryReader reader = new BinaryReader(File.Open(file, FileMode.OpenOrCreate));
+            while (reader.PeekChar() > -1)
+            {
+                //to do
+            }
+            reader.Close();
         }
         public void FindBookByTag(string name)
         {
@@ -59,6 +62,10 @@ namespace BookListService_s
                 if (book.Equals(books[i]) == true) return true;
             }
             return false;
+        }
+        private void Resize()
+        {
+            //to do
         }
     }
 }
