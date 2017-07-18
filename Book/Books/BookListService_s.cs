@@ -15,15 +15,22 @@ namespace BookListService_s
         /// </summary>
         private string file = "C:/Users/User/Desktop/GitHub/NET.S.2017.Kuksov.09/Book/BookListStorage.txt";
         /// <summary>
-        /// Add Book
+        /// fields
         /// </summary>
-        /// <param name="book">book</param>
         private Book[] books = new Book[10];
         private static int count;
+        /// <summary>
+        /// c-or
+        /// </summary>
+        /// <param name="book">book</param>
         public BookListService(Book book)
         {
             books[count++] = book;
         }
+        /// <summary>
+        /// adding book
+        /// </summary>
+        /// <param name="book">book</param>
         public void AddBook(Book book)
         {
             if (book == null) throw new ArgumentNullException();
