@@ -9,12 +9,11 @@ using BookListService_s;
 
 namespace Books
 {
-    public class Book: ICloneable, IFormattable
+    public class Book: ICloneable, IFormattable, IComparable
     {
         /// <summary>
-        /// storage of book
+        /// private field
         /// </summary>
-        private BookListService storage;
         static int count;
         private int id;
         /// <summary>
@@ -40,13 +39,12 @@ namespace Books
         /// <param name="numberOfPage">number of page</param>
         public Book(string name, string authors,  string yearEdition, int numberOfPage)
         {
-            if (name == null || authors == null || yearEdition == null || numberOfPage == null) throw new ArgumentNullException();
+            if (name == null || authors == null || yearEdition == null) throw new ArgumentNullException();
             Name = name;
             Authors = authors;
             YearEdition = yearEdition;
             NumberOfPage = numberOfPage;
             id = count;
-            BookListService storage = new BookListService(this.Clone());
         }
 
         /// <summary>
@@ -63,12 +61,17 @@ namespace Books
             return false;
         }
         /// <summary>
-        /// 
+        /// return id
         /// </summary>
-        /// <returns></returns>
+        /// <returns>id</returns>
         public override int GetHashCode()
         {
             return id;
+        }
+        public int CompareTo(object obj)
+        {
+            if (!(obj is Book)) throw new ArgumentException();
+            return 1;
         }
         /// <summary>
         /// converting in format string

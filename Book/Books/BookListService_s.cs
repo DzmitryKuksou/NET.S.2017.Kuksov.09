@@ -13,7 +13,7 @@ namespace BookListService_s
         /// <summary>
         /// storage 
         /// </summary>
-        private string file = "C:/Users/User/Desktop/GitHub/NET.S.2017.Kuksov.09/Book/BookListStorage.txt";
+        private string file = "BookListStorage.txt";
         /// <summary>
         /// fields
         /// </summary>
