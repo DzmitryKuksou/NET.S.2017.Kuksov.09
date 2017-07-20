@@ -4,11 +4,11 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{820DBEF8-E38A-45A2-9293-AAB7494F6341}</ProjectGuid>
+    <ProjectGuid>{6C03E94B-4223-4A6C-8F21-C761CCBC35CC}</ProjectGuid>
     <OutputType>Library</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Books</RootNamespace>
-    <AssemblyName>Books</AssemblyName>
+    <RootNamespace>BinaryFileStore</RootNamespace>
+    <AssemblyName>BinaryFileStore</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
   </PropertyGroup>
@@ -40,8 +40,22 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Book.cs" />
+    <Compile Include="Binaryfile.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\Books\Books.csproj">
+      <Project>{820dbef8-e38a-45a2-9293-aab7494f6341}</Project>
+      <Name>Books</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InterfacesBook\InterfacesBook.csproj">
+      <Project>{37a2be9f-4c53-4749-8e80-d600b145e268}</Project>
+      <Name>InterfacesBook</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TagClasses\TagClasses.csproj">
+      <Project>{735a5912-8d37-4f9f-9652-0361bd64d163}</Project>
+      <Name>TagClasses</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

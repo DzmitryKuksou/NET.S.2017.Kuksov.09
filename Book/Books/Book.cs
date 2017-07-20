@@ -5,17 +5,11 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Globalization;
-using BookListService_s;
 
 namespace Books
 {
-    public class Book: ICloneable, IFormattable, IComparable
+    public class Book: ICloneable, IFormattable, IComparable, IEquatable<Book>
     {
-        /// <summary>
-        /// private field
-        /// </summary>
-        static int count;
-        private int id;
         /// <summary>
         /// Properties
         /// </summary>
@@ -23,13 +17,6 @@ namespace Books
         public string Authors { get; private set; }
         public string YearEdition { get; private set; }
         public int NumberOfPage { get; private set; }
-        /// <summary>
-        /// c-or
-        /// </summary>
-        static Book()
-        {
-            count++;
-        } 
         /// <summary>
         /// C-OR
         /// </summary>
@@ -44,14 +31,12 @@ namespace Books
             Authors = authors;
             YearEdition = yearEdition;
             NumberOfPage = numberOfPage;
-            id = count;
         }
-
         /// <summary>
-        /// 
+        /// equals of books
         /// </summary>
-        /// <param name="obj"></param>
-        /// <returns></returns>
+        /// <param name="obj">object</param>
+        /// <returns>true or false</returns>
         public override bool Equals(object obj)
         {
             Book book = obj as Book;
@@ -66,12 +51,29 @@ namespace Books
         /// <returns>id</returns>
         public override int GetHashCode()
         {
-            return id;
+            return base.GetHashCode();
         }
-        public int CompareTo(object obj)
+        /// <summary>
+        /// comparing of books
+        /// </summary>
+        /// <param name="lhs">first book</param>
+        /// <param name="rhs">second book</param>
+        /// <param name="comparer">tag of comparer</param>
+        /// <returns>number</returns>
+        public static int Compare(Book lhs, Book rhs, IComparer<Book> comparer)
         {
-            if (!(obj is Book)) throw new ArgumentException();
-            return 1;
+            return comparer.Compare(lhs, rhs);
+        }
+        /// <summary>
+        /// comparing of books
+        /// </summary>
+        /// <param name="obj">object</param>
+        /// <returns>number</returns>
+        int IComparable.CompareTo(object obj)
+        {
+            Book book = obj as Book;
+            if (ReferenceEquals(book, null)) throw new ArgumentNullException();
+            return String.Compare(book.Name, Name);
         }
         /// <summary>
         /// converting in format string
@@ -108,6 +110,16 @@ namespace Books
                 default:
                     throw new FormatException(String.Format("The {0} format string is not supported.", format));
             }
+        }
+        /// <summary>
+        ///  checking on Equals
+        /// </summary>
+        /// <param name="book">book</param>
+        /// <returns>true or false</returns>
+        public bool Equals(Book book)
+        {
+            if (ReferenceEquals(book, null)) throw new ArgumentNullException();
+            return Name == book.Name && Authors == book.Authors && YearEdition == book.YearEdition && NumberOfPage == book.NumberOfPage;
         }
         /// <summary>
         /// return new equal book

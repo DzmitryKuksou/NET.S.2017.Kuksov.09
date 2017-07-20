@@ -4,15 +4,17 @@
   <PropertyGroup>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <ProjectGuid>{820DBEF8-E38A-45A2-9293-AAB7494F6341}</ProjectGuid>
-    <OutputType>Library</OutputType>
+    <ProjectGuid>{0CFA0E17-4902-4315-9836-CE5A1577C23D}</ProjectGuid>
+    <OutputType>Exe</OutputType>
     <AppDesignerFolder>Properties</AppDesignerFolder>
-    <RootNamespace>Books</RootNamespace>
-    <AssemblyName>Books</AssemblyName>
+    <RootNamespace>TestConsole</RootNamespace>
+    <AssemblyName>TestConsole</AssemblyName>
     <TargetFrameworkVersion>v4.5.2</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <AutoGenerateBindingRedirects>true</AutoGenerateBindingRedirects>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugSymbols>true</DebugSymbols>
     <DebugType>full</DebugType>
     <Optimize>false</Optimize>
@@ -22,12 +24,16 @@
     <WarningLevel>4</WarningLevel>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <PlatformTarget>AnyCPU</PlatformTarget>
     <DebugType>pdbonly</DebugType>
     <Optimize>true</Optimize>
     <OutputPath>bin\Release\</OutputPath>
     <DefineConstants>TRACE</DefineConstants>
     <ErrorReport>prompt</ErrorReport>
     <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup>
+    <StartupObject>TestConsole.Program</StartupObject>
   </PropertyGroup>
   <ItemGroup>
     <Reference Include="System" />
@@ -40,8 +46,36 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
-    <Compile Include="Book.cs" />
+    <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Content Include="Store.txt" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="..\BinaryFileStore\BinaryFileStore.csproj">
+      <Project>{6c03e94b-4223-4a6c-8f21-c761ccbc35cc}</Project>
+      <Name>BinaryFileStore</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\BookListServices\BookListServices.csproj">
+      <Project>{6a29f491-4c38-428e-a8be-bec03340ad91}</Project>
+      <Name>BookListServices</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\Books\Books.csproj">
+      <Project>{820dbef8-e38a-45a2-9293-aab7494f6341}</Project>
+      <Name>Books</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\InterfacesBook\InterfacesBook.csproj">
+      <Project>{37a2be9f-4c53-4749-8e80-d600b145e268}</Project>
+      <Name>InterfacesBook</Name>
+    </ProjectReference>
+    <ProjectReference Include="..\TagClasses\TagClasses.csproj">
+      <Project>{735a5912-8d37-4f9f-9652-0361bd64d163}</Project>
+      <Name>TagClasses</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
