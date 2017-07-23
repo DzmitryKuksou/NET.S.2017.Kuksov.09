@@ -33,6 +33,11 @@ namespace Books
             NumberOfPage = numberOfPage;
         }
         /// <summary>
+        /// c-or
+        /// </summary>
+        /// <param name="book">book</param>
+        public Book(Book book) : this(book.Name, book.Authors, book.YearEdition, book.NumberOfPage) { }
+        /// <summary>
         /// equals of books
         /// </summary>
         /// <param name="obj">object</param>

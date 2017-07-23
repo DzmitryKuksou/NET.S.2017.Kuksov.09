@@ -42,7 +42,6 @@ namespace BinaryFileStore
                     author = reader.ReadString();
                     year = reader.ReadString();
                     pages = reader.ReadInt32();
-
                     books.Add(new Book(name, author, year, pages));
                 }
             }
