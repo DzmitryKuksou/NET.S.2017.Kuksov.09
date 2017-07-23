@@ -6,12 +6,18 @@ using System.Threading.Tasks;
 using System.IO;
 using Books;
 using System.Xml.Linq;
+using InterfacesBooks;
 
 namespace TagClasses
 {
-    class XMLfile
+    class XMLfile:IStorageBook<Book>
     {
         public string Path { get; set; }
+        public XMLfile(string path)
+        {
+            if (!File.Exists(Path)) throw new Exception("there are no file for saving!");
+            Path = path;
+        }
         /// <summary>
         /// saving in xml file
         /// </summary>
